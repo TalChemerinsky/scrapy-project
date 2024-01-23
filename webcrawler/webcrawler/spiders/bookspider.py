@@ -34,11 +34,9 @@ class BookspiderSpider(scrapy.Spider):
         yield {
             'Name': response.css('.product_main h1::text').get(),
             'Link': response.url,
-            'Information': {
-                'Price': response.css('p.price_color ::text').get(),
-                'Category': response.xpath("//ul[@class='breadcrumb']/li[@class='active']/preceding-sibling::li["
+            'Price': response.css('p.price_color ::text').get(),
+            'Category': response.xpath("//ul[@class='breadcrumb']/li[@class='active']/preceding-sibling::li["
                                            "1]/a/text()").get(),
-                'Rating': response.css("p.star-rating").attrib['class'].split(' ')[1] + ' stars',
-                'Availability': table_rows[5].css("td ::text").get()
-            }
+            'Rating': response.css("p.star-rating").attrib['class'].split(' ')[1] + ' stars',
+            'Availability': table_rows[5].css("td ::text").get()
         }
